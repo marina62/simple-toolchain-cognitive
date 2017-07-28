@@ -10,17 +10,38 @@
   </head>
 
   <body>
-    <table>
-      <tr>
-        <td style= "width:30%;">
-          <img class = "newappIcon" src="images/newapp-icon.png">
-        </td>
-        <td>
-          <h1 id="message">Hello World!</h1>
-          <p class='description'></p> Thanks for creating a <span class = "blue">NodeJS Starter Application</span>.
-        </td>
-      </tr>
-    </table>
+    <div class="container">
+      <div class="heading">
+        <h1>Natural Language Lab</h1>
+      </div>
+      <div class="col-md-6">
+        <button id="nlcBtn" class="btn btn-highlighted">Natural Language Classifier</button>
+      </div>
+      <div class="col-md-6">
+        <button id="nluBtn" class="btn">Natural Language Understanding</button>
+      </div>
+    </div>
+    <div id="nlClassifier" class="container">
+      <div class="input col-md-4">
+        <h2>Input</h2>
+        <input id="NLCInput" type="text" placeholder="Input Here" >
+        <button id="submitTextNLC" class="btn btn-primary">Submit</button>
+      </div>
+      <div class="output col-md-8">
+        <h2>Output</h2>
+        <p id="NLCOutput">
+          
+        </p>
+      </div>
+    </div>
+    <div hidden id ="nlUnderstanding container">
+      NLU
+    </div>
   </body>
 
+
+  <script type="text/javascript" src ="lib/jquery.min.js"></script>
+  <script type="text/javascript" src ="js/switchTabs.js"></script>
+  <script type="text/javascript" src ="js/sendNLCData.js"></script>
+  
 </html>
