@@ -7,35 +7,57 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="stylesheets/style.css">
+    <link rel="stylesheet" href="stylesheets/sidenav.css">
   </head>
 
   <body>
+  <div id="mySidenav" class="sidenav">
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+      <div id="classifierList">
+        <h2>Classifier List</h2>
+      </div>
+  </div>
+  <!-- Use any element to open the sidenav -->
+  <span onclick="openNav()">open</span>
+  <div  id ="main">
     <div class="container">
-      <div class="heading">
-        <h1>Natural Language Lab</h1>
+        <div class="heading">
+          <h1>Natural Language Lab</h1>
+        </div>
+        <div class="col-md-6">
+          <button id="nlcBtn" class="btn btn-highlighted">Natural Language Classifier</button>
+        </div>
+        <div class="col-md-6">
+          <button id="nluBtn" class="btn">Natural Language Understanding</button>
+        </div>
       </div>
-      <div class="col-md-6">
-        <button id="nlcBtn" class="btn btn-highlighted">Natural Language Classifier</button>
+      <div id="nlClassifier" class="container">
+        <div class="headingContainer jumbotron">
+          <div id="summaryContainer">
+            <h2 class="title">Natural Langauage Classifier</h2>
+            <p class="base--p">Natural Language Classifier applies deep learning techniques to make predictions about the best predefined classes for short sentences or phrases.</p>
+          </div>
+          <div id="inputTextContainer">
+            <input id="NLCInput" type="text" placeholder="Input Here" >
+            <button id="submitTextNLC" class="btn btn-primary">Submit</button>
+            <p id="currentClassifier"></p>
+          </div>
+          <div id="uploadContainer">
+            <h3>Upload Training Doc</h3>
+            <input type="file" id="csvFile" onchange="fileCheck()">
+            <button style="display:none" id="submitNLCFile" class="btn btn-primary">Train</button>
+          </div>
+        </div>
+        <table id="nlcTable">
+          <tr>
+            <td class="tableHeading"><h2>Input</h2></td>
+            <td class="tableHeading"><h2>Output</h2></td>
+          </tr>
+        </table>
       </div>
-      <div class="col-md-6">
-        <button id="nluBtn" class="btn">Natural Language Understanding</button>
+      <div hidden id ="nlUnderstanding" class ="container">
+        NLU
       </div>
-    </div>
-    <div id="nlClassifier" class="container">
-      <div class="input col-md-4">
-        <h2>Input</h2>
-        <input id="NLCInput" type="text" placeholder="Input Here" >
-        <button id="submitTextNLC" class="btn btn-primary">Submit</button>
-      </div>
-      <div class="output col-md-8">
-        <h2>Output</h2>
-        <p id="NLCOutput">
-          
-        </p>
-      </div>
-    </div>
-    <div hidden id ="nlUnderstanding container">
-      NLU
     </div>
   </body>
 
@@ -43,5 +65,8 @@
   <script type="text/javascript" src ="lib/jquery.min.js"></script>
   <script type="text/javascript" src ="js/switchTabs.js"></script>
   <script type="text/javascript" src ="js/sendNLCData.js"></script>
+  <script type="text/javascript" src ="js/uploadNLCData.js"></script>
+  <script type="text/javascript" src ="js/onLoad.js"></script>
+  <script type="text/javascript" src ="js/sidenav.js"></script>
   
 </html>

@@ -27,18 +27,68 @@
 	text-align: center;
 	border: 1px solid black;
 }
-#submitText{
+#submitTextNLC,#submitNLCFile{
 	background: #9855d4;
 }
 input{
-	float: left;
-	display: inline;
 	width: 75%;
 }
 .btn-primary{
-	float: right;
-	display:inline;
+	
 }
+.inTab{
+	border-radius:5px;
+	background-color:#8FD8D8;
+	border-top:.5px solid black;
+}
+.outTab{
+	border-top:.5px solid black;
+	border-radius: 5px;
+	background-color:#E6E6FA;
+}
+td{
+	width: 50%;
+}
+tr{
+	margin: 10px;
+}
+#nlcTable{
+	width: 100%;
+}
+.tableHeading{
+	border-bottom: 1px solid black;
+}
+
+#submitNLCFile{
+	display:inline;
+	float: right;
+}
+#csvFile{
+	display:inline;
+	float:left;
+}
+.headingContainer{
+	background: #f4f4f4;
+}
+#inputTextContainer{
+	/*display:inline-block;*/
+	float:left;
+}
+#uploadContainer{
+	/*display: inline-block;*/
+	width:25%;
+	float:right;
+}
+#summaryContainer{
+	display: block;
+}
+#inputTextContainer{
+	display:block;
+}
+.jumbotron{
+	padding-bottom:150px;
+}
+
 /*
 body,html {
 	background-color: #3b4b54; width : 100%;

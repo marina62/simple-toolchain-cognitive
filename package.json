@@ -11,7 +11,11 @@
     "cfenv": "1.0.x",
     "dotenv": "^4.0.0",
     "express": "4.15.x",
+    "formidable": "^1.1.1",
+    "fs": "0.0.1-security",
     "jquery": "^3.2.1",
+    "path": "^0.12.7",
+    "request": "^2.81.0",
     "watson-developer-cloud": "^2.37.0"
   },
   "repository": {},

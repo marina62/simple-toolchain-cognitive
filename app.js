@@ -8,7 +8,9 @@
 // for more info, see: http://expressjs.com
 var express = require('express');
 var bodyParser = require('body-parser'); // parser for post requests
-
+var fs = require('fs');
+var path = require('path');
+var request = require('request');
 // cfenv provides access to your Cloud Foundry environment
 // for more info, see: https://www.npmjs.com/package/cfenv
 var cfenv = require('cfenv');
