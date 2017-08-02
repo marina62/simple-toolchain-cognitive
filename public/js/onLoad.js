@@ -59,7 +59,7 @@ function loadSidenav(){
 		idObj.classifiers.forEach(function(temp,index){
 			if(index==idObj.classifiers.length -1)
 			{
-				$('#classifierList').append('<div class="listItem"><a class="idNum currentID" value="' + temp.classifier_id+'">Classifier ID: ' + temp.classifier_id + '<br>Created: ' + temp.created + '</a><a class="deleteClass"><img src="images/trash.png"></a></div>');
+				$('#classifierList').append('<div class="listItem"><a class="idNum currentID" value="' + temp.classifier_id+'">Classifier ID: ' + temp.classifier_id + '<br>Created: ' + temp.created + '<a class="deleteClass"><img src="images/trash.png"></a></a></div>');
 			
 			}
 			else{

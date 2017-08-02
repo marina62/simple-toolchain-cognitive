@@ -68,8 +68,6 @@ app.delete('/api/deleteClassifier',function(req,res,next){
 	});
 });
 app.put('/api/classifier',function(req,res,next){
-
-
 	natural_language_classifier.classify({
   			text: req.body.text,
   			//'359f41x201-nlc-226021' 
@@ -83,5 +81,5 @@ app.put('/api/classifier',function(req,res,next){
       			console.log(JSON.stringify(response, null, 2));
       			res.json(response);
     		}
-});
+	});
 });

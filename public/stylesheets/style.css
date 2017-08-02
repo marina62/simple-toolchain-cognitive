@@ -88,7 +88,9 @@ tr{
 .jumbotron{
 	padding-bottom:150px;
 }
-
+.jumbotron p{
+	font-size: 15px;
+}
 /*
 body,html {
 	background-color: #3b4b54; width : 100%;

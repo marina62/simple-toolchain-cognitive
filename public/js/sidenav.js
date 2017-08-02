@@ -21,3 +21,15 @@ $(document).on('click','.idNum',function(){
 	$('.currentID').removeClass('currentID');
 	$(this).addClass('currentID');
 });
+
+$(document).on('click','.deleteClass',function(){
+	var $sib = $(this).siblings('.idNum');
+	var $par = $(this).parent();
+	deleteClassifier($sib.attr('value')).then(function(){
+		$par.hide('slow',function(){
+			$par.remove();
+		});
+	});
+
+	
+});
