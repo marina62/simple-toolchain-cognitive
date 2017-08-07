@@ -6,7 +6,7 @@
 
 // This application uses express as its web server
 // for more info, see: http://expressjs.com
-require('dotenv').config({silent: true});
+
 var express = require('express');
 var bodyParser = require('body-parser'); // parser for post requests
 var fs = require('fs');
