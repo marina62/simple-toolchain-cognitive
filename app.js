@@ -12,7 +12,7 @@ var bodyParser = require('body-parser'); // parser for post requests
 var fs = require('fs');
 var path = require('path');
 var request = require('request');
-var port = 3000;
+//var port = 3000;
 
 
 // cfenv provides access to your Cloud Foundry environment
@@ -39,9 +39,9 @@ require('./service/nlUnderstanding.js');
 
 module.exports = app;
 
-app.listen(port, function() {
+app.listen(appEnv.port, '0.0.0.0',function() {
   // eslint-disable-next-line
-  console.log('Server running on port: %d', port);
+  console.log('Server running on' + appEnv.url);
 });
 /*// start server on the specified port and binding host
 app.listen(appEnv.port, '0.0.0.0', function() {
