@@ -6,11 +6,15 @@
 
 // This application uses express as its web server
 // for more info, see: http://expressjs.com
+require('dotenv').config({silent: true});
 var express = require('express');
 var bodyParser = require('body-parser'); // parser for post requests
 var fs = require('fs');
 var path = require('path');
 var request = require('request');
+var port = 3000;
+
+
 // cfenv provides access to your Cloud Foundry environment
 // for more info, see: https://www.npmjs.com/package/cfenv
 var cfenv = require('cfenv');
@@ -35,7 +39,10 @@ require('./service/nlUnderstanding.js');
 
 module.exports = app;
 
-
+app.listen(port, function() {
+  // eslint-disable-next-line
+  console.log('Server running on port: %d', port);
+});
 /*// start server on the specified port and binding host
 app.listen(appEnv.port, '0.0.0.0', function() {
   // print a message when the server starts listening
