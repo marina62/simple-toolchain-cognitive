@@ -19,69 +19,54 @@ $(document).on('click','#submitTextNLC',function(){
 
 	//use the selected classifier
 	var id = $('.currentID').attr('value');
-	callClassifier(id);
+	
+	getCount().then(function(count){
+		console.log(count);
+		var value = $('#NLCInput').val();
+		callClassifier(id,value).then(function(payload){
+			console.log(count);
+			outputNLCData(payload.val,payload.obj,count);
+		});
+	});
 
 });
 
-function callClassifier(id){
+function getCount(){
 	var promise = new Promise(function(resolve,reject){
-		var value = $('#NLCInput').val();
-		var apiCall = {
-			"text": value,
-			"classifier_id": id
-		};
-		console.log(apiCall);
-
-		var messageEndpoint = '/api/classifier';
-		// Built http request
-		var http = new XMLHttpRequest();
-	    http.open('PUT', messageEndpoint, true);
-	    http.setRequestHeader('Content-type', 'application/json');
-	    http.onreadystatechange = function() {
-	      if (http.readyState === 4 && http.status === 200 && http.responseText) {
-	        console.log(http.responseText);
-	        outputNLCData(value,http.responseText);
-	      }
-	    };
-
-	    var params = JSON.stringify(apiCall);
-	    console.log("Params: ", params);
-	    http.send(params);
+		var count = $('#topHeading').siblings().length + 1;
+		resolve(count);
 	});
 	return promise;
 }
 
-
-function outputNLCData(input,output){		
-	$('#nlcTable').append('<tr><td class="inTab">' + input + '</td><td class="outTab">'+output+'</td></tr>');
+function outputNLCData(input,output,count){
+	//console.log(count);		
+	var outTab = 'outTab' + count;
+	//console.log(outTab);
+	$('#nlcTable').append('<tr><td class="inTab">' + input + '</td><td class="outTab" id="'+outTab+'"></td></tr>');
+	$('#' + outTab).jsonViewer(JSON.parse(output));
 	$('#NLCInput').val('');
 }
 
-
-function compare(a,b){
-	if(a.created < b.created)
-		return -1;
-	if(a.created > b.created)
-		return 1;
-	return 0;
-}
-
-function getCurrentClassifier(){
-	var promise = new Promise(function(resolve,reject){
-		var messageEndpoint = '/api/classifierList';
-		console.log("preparing request");
-		var http = new XMLHttpRequest();
-		http.open('GET', messageEndpoint, true);
-		http.setRequestHeader('Content-type', 'application/json');
-		http.onreadystatechange = function() {
-			if (http.readyState === 4 && http.status === 200 && http.responseText) {
-				//console.log(http.responseText);
-				//resolve(http.responseText);
-				resolve(http.responseText);
+function statusTimer(id){
+	var timer = setInterval(function(){
+		checkStatus(id).then(function(stat){
+			var obj = JSON.parse(stat);
+			if(obj.status =="Available"){
+				clearInterval(timer);
+				$('.loader').hide();
+				$('#currentClassifier').text("Current Classifier ID: " + obj.classifier_id);
+				$('#submitTextNLC').prop("disabled",false);
+				console.log('finished training');
 			}
-		};
-		
-		http.send();
-	});
-	return promise;
+			else{
+				console.log('still training');
+				$('.loader').show();
+			}
+		});
+	},60000);
+
 }
+
+
+

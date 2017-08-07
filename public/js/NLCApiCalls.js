@@ -1,12 +1,11 @@
 //implements all calls to the NLC Service
-function callClassifier(id){
+function callClassifier(id,value){
 	var promise = new Promise(function(resolve,reject){
-		var value = $('#NLCInput').val();
 		var apiCall = {
 			"text": value,
 			"classifier_id": id
 		};
-		console.log(apiCall);
+		//console.log(apiCall);
 
 		var messageEndpoint = '/api/classifier';
 		// Built http request
@@ -15,13 +14,14 @@ function callClassifier(id){
 	    http.setRequestHeader('Content-type', 'application/json');
 	    http.onreadystatechange = function() {
 	      if (http.readyState === 4 && http.status === 200 && http.responseText) {
-	        console.log(http.responseText);
-	        outputNLCData(value,http.responseText);
+	       // console.log(http.responseText);
+	        resolve({'val':value, 'obj':http.responseText});
+	        //outputNLCData(value,http.responseText);
 	      }
 	    };
 
 	    var params = JSON.stringify(apiCall);
-	    console.log("Params: ", params);
+	    //console.log("Params: ", params);
 	    http.send(params);
 	});
 	return promise;
@@ -30,7 +30,7 @@ function callClassifier(id){
 function getCurrentClassifier(){
 	var promise = new Promise(function(resolve,reject){
 		var messageEndpoint = '/api/classifierList';
-		console.log("preparing request");
+		//console.log("preparing request");
 		var http = new XMLHttpRequest();
 		http.open('GET', messageEndpoint, true);
 		http.setRequestHeader('Content-type', 'application/json');
@@ -72,7 +72,7 @@ function checkStatus(id){
 function sendFile(file){
 	var promise = new Promise(function(resolve,reject){
 		//var arr = file.split(',');
-		console.log(file);
+		//console.log(file);
 		var apiCall = {
 			'data': file
 		};
@@ -84,13 +84,13 @@ function sendFile(file){
 	    http.setRequestHeader('Content-type', 'application/json');
 	    http.onreadystatechange = function() {
 	      if (http.readyState === 4 && http.status === 200 && http.responseText) {
-	        console.log(http.responseText);
+	        //console.log(http.responseText);
 	        resolve(http.responseText);
 	      }
 	    };
 
 		var params = JSON.stringify(apiCall);
-	    console.log("Params: ", params);
+	    //console.log("Params: ", params);
 	    http.send(params);
 	});
 
@@ -119,4 +119,11 @@ function deleteClassifier(id){
 		    http.send(params);
 	});
 	return promise;
+}
+function compare(a,b){
+	if(a.created < b.created)
+		return -1;
+	if(a.created > b.created)
+		return 1;
+	return 0;
 }

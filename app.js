@@ -30,6 +30,7 @@ var appEnv = cfenv.getAppEnv();
 module.exports.app = app;
 
 require('./service/nlClassifier.js');
+require('./service/nlUnderstanding.js');
 
 
 module.exports = app;

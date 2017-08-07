@@ -3,7 +3,7 @@ $(document).ready(function(){
 	getCurrentClassifier().then(function(id){
 		var classifier = JSON.parse(id);
 		classifier.classifiers.sort(compare);
-		console.log(classifier);
+		//console.log(classifier);
 		var max = classifier.classifiers.length -1;
 		if(classifier.classifiers.length == 0){
 			$('#currentClassifier').text("<p id='noClass'>No Current Classifiers Found</p>");
@@ -23,35 +23,18 @@ function isAvailable(status){
 	if(status.status == "Available"){
 		//console.log(status);
 		$('#submitTextNLC').prop("disabled",false);
+		$('.loader').hide();
 	}
 	else{
 		//console.log(status);
 		$('#submitTextNLC').prop("disabled",true);
 		//console.log('adding');
 		$('#currentClassifier').append("<br>Classifier is still training");
+		$('.loader').show();
+		statusTimer(status.classifier_id);
 	}
 }
-function checkStatus(id){
-	var promise = new Promise(function(resolve,reject){
-		var messageEndpoint = '/api/classifierStatus?classifier=' +id;
-		//console.log("preparing request");
-		var apiCall = {
-			'classifier':id
-		};
-		var http = new XMLHttpRequest();
-		http.open('GET', messageEndpoint, true);
-		http.setRequestHeader('Content-type', 'application/json');
-		http.onreadystatechange = function() {
-			if (http.readyState === 4 && http.status === 200 && http.responseText) {
-				resolve(http.responseText);
-			}
-		};
-		var params = JSON.stringify(apiCall);
-	    //console.log("Params: ", params);
-	    http.send(params);
-	});	
-	return promise;
-}
+
 function loadSidenav(){
 	getCurrentClassifier().then(function(id){
 		var idObj = JSON.parse(id);
@@ -59,7 +42,7 @@ function loadSidenav(){
 		idObj.classifiers.forEach(function(temp,index){
 			if(index==idObj.classifiers.length -1)
 			{
-				$('#classifierList').append('<div class="listItem"><a class="idNum currentID" value="' + temp.classifier_id+'">Classifier ID: ' + temp.classifier_id + '<br>Created: ' + temp.created + '<a class="deleteClass"><img src="images/trash.png"></a></a></div>');
+				$('#classifierList').append('<div class="listItem"><a class="idNum currentID" value="' + temp.classifier_id+'">Classifier ID: ' + temp.classifier_id + '<br>Created: ' + temp.created + '</a><a class="deleteClass"><img src="images/trash.png"></a></div>');
 			
 			}
 			else{

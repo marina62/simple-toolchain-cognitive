@@ -3,17 +3,12 @@
  */
 @import 'bootstrap.css';
 
-#nlcBtn{
-	width: 100%;
-}
- #nluBtn{
- 	width: 100%;
- }
+
 .heading{
 	text-align: center;
 }
-.btn-highlighted{
-	background: #00bfff;
+.active{
+	background: #e7e7e7;
 }
 .container{
 	padding-top: 20px;
@@ -27,24 +22,31 @@
 	text-align: center;
 	border: 1px solid black;
 }
-#submitTextNLC,#submitNLCFile{
+#submitTextNLC,#submitNLCFile,#submitTextNLU{
 	background: #9855d4;
+	margin-top:-20px;
 }
-input{
-	width: 75%;
+#submitTextNLC,#submitTextNLU{
+	margin-top:-20px;
+}
+textarea{
+	width: 70%;
+	height: 100px;
 }
 .btn-primary{
 	
 }
-.inTab{
+.inTab,.inTabU{
 	border-radius:5px;
 	background-color:#8FD8D8;
 	border-top:.5px solid black;
+	padding-left:30px;
 }
-.outTab{
+.outTab,.outTabU{
 	border-top:.5px solid black;
 	border-radius: 5px;
 	background-color:#E6E6FA;
+	padding-left:30px;
 }
 td{
 	width: 50%;
@@ -52,7 +54,7 @@ td{
 tr{
 	margin: 10px;
 }
-#nlcTable{
+#nlcTable,#nluTable{
 	width: 100%;
 }
 .tableHeading{
@@ -84,12 +86,32 @@ tr{
 }
 #inputTextContainer{
 	display:block;
+	width:62%;
 }
-.jumbotron{
-	padding-bottom:150px;
+.headingContainer.jumbotron{
+	padding-bottom:225px;
 }
 .jumbotron p{
 	font-size: 15px;
+}
+#currentClassifier{
+	
+	position:relative;
+	top:20px;
+	width:75%;
+}
+.navbar-fixed-top{
+	position: static;
+}
+#nluFeatures{
+	display: block;
+}
+#featureList1,#featureList2{
+	display:inline-block;
+	list-style: none
+}
+#sideNav,#nlcBtn,#nluBtn,#homeBtn{
+	cursor: pointer;
 }
 /*
 body,html {

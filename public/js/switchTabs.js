@@ -1,16 +1,26 @@
 $(document).on('click','#nlcBtn',function(){
-	console.log("nlc working");
 	$('#nlClassifier').show();
-	console.log("nlc working");
 	$('#nlUnderstanding').hide();
-	console.log("nlc working");
-	$('#nluBtn').removeClass('btn-highlighted');
-	console.log("nlc working");
-	$(this).addClass('btn-highlighted');
+	$('#home').hide();
+	$('#homeBtn').removeClass('active');
+	$('#nluBtn').removeClass('active');
+	$(this).addClass('active');
 });
+
+
 $(document).on('click','#nluBtn',function(){
 	$('#nlClassifier').hide();
+	$('#home').hide();
 	$('#nlUnderstanding').show();
-	$('#nlcBtn').removeClass('btn-highlighted');
-	$(this).addClass('btn-highlighted');
+	$('#homeBtn').removeClass('active');
+	$('#nlcBtn').removeClass('active');
+	$(this).addClass('active');
+});
+$(document).on('click','#homeBtn',function(){
+	$('#nlClassifier').hide();
+	$('#nlUnderstanding').hide();
+	$('#home').show();
+	$('#nluBtn').removeClass('active');
+	$('#nlcBtn').removeClass('active');
+	$(this).addClass('active');
 });
