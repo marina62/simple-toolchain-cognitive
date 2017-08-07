@@ -6,3 +6,4 @@ applications:
   name: ArcBestLab
   host: ArcBestLab
   disk_quota: 1024M
+  timeout: 180
