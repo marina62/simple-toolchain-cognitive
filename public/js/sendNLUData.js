@@ -37,9 +37,15 @@ $(document).on('click','#submitTextNLU',function(){
 		console.log("must have one parameter")
 		$('#nluFeatures').append('<p class="alert">*Must have one feature checked to analyze*</p>')
 	}
+	else if($('#NLUInput').val() == '')
+	{
+		$('#nluFeatures').append('<p class="alert">*Must have input to analyze*</p>')
+	
+	}
 	else{
+		$('.alert').remove();
 		console.log(typeof parameters);
-		getCount().then(function(count){
+		getCountU().then(function(count){
 			callUnderstanding(parameters).then(function(payload){
 				outputNLUData($('#NLUInput').val(),payload,count);
 			});
@@ -117,7 +123,7 @@ function outputNLUData(input,output,count){
 	//console.log(outTab);
 	$('#nluTable').append('<tr><td class="inTabU">' + input + '</td><td class="outTabU" id="'+outTab+'"></td></tr>');
 	$('#' + outTab).jsonViewer(JSON.parse(output));
-	$('#NLCInput').val('');
+	$('#NLUInput').val('');
 }
 function getCountU(){
 	var promise = new Promise(function(resolve,reject){

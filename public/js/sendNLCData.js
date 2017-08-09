@@ -23,10 +23,19 @@ $(document).on('click','#submitTextNLC',function(){
 	getCount().then(function(count){
 		console.log(count);
 		var value = $('#NLCInput').val();
-		callClassifier(id,value).then(function(payload){
-			console.log(count);
-			outputNLCData(payload.val,payload.obj,count);
-		});
+		if(value == '')
+		{
+			$('.inputTextContainerC').append("<br><p class='alert'>*Must have input to analyze*</p>");
+		
+		}
+		else
+		{
+			$('.alert').remove();
+			callClassifier(id,value).then(function(payload){
+					console.log(count);
+					outputNLCData(payload.val,payload.obj,count);
+				});
+		}
 	});
 
 });
