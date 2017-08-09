@@ -34,15 +34,17 @@ $(document).on('click','#submitTextNLU',function(){
 		parameters.parameters.features.sentiment = sentimentChecked();
 	}
 	if(Object.keys(parameters.parameters.features).length == 0){
-		console.log("undefined")
-		delete parameters.parameters.features;
+		console.log("must have one parameter")
+		$('#nluFeatures').append('<p class="alert">*Must have one feature checked to analyze*</p>')
 	}
-	console.log(typeof parameters);
-	getCount().then(function(count){
-		callUnderstanding(parameters).then(function(payload){
-			outputNLUData($('#NLUInput').val(),payload,count);
+	else{
+		console.log(typeof parameters);
+		getCount().then(function(count){
+			callUnderstanding(parameters).then(function(payload){
+				outputNLUData($('#NLUInput').val(),payload,count);
+			});
 		});
-	});
+	}
 });
 
 
