@@ -20,6 +20,7 @@ $(document).on('click','.idNum',function(){
 		});	
 	$('.currentID').removeClass('currentID');
 	$(this).addClass('currentID');
+	$('#alert').remove();
 });
 
 $(document).on('click','.deleteClass',function(){

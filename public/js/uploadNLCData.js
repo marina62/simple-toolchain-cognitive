@@ -21,6 +21,7 @@ $(document).on('click','#submitNLCFile',function(){
 			$('#submitNLCFile').hide();
 			var fileInput = document.getElementById('csvFile');
 			fileInput.value = '';
+			$('#uploadContainer').append('<p id="alert">Classifier Training</p>')
 		});
 	});
 	//load until model trained
