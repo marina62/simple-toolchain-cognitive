@@ -6,15 +6,21 @@ $(document).ready(function(){
 		//console.log(classifier);
 		var max = classifier.classifiers.length -1;
 		if(classifier.classifiers.length == 0){
-			$('#currentClassifier').text("<p id='noClass'>No Current Classifiers Found</p>");
+			$('#currentClassifier').append("<p id='noClass'>No Current Classifiers Found</p>");
 		}
 		else{
 			$('#currentClassifier').text("Current Classifier ID: " + classifier.classifiers[max].classifier_id);
 			$('#currentClassifier').append("<br>*This is the most recent classifier that has been uploaded");
 		}
-		checkStatus(classifier.classifiers[max].classifier_id).then(function(stat){
+		if(classifier.classifiers[max] == undefined)
+		{
+			console.log("no current classifier")
+		}
+		else 
+		{
+			checkStatus(classifier.classifiers[max].classifier_id).then(function(stat){
 			isAvailable(JSON.parse(stat));
-		});
+		});}
 		loadSidenav();
 	});
 	//$('#currentClassifier')
